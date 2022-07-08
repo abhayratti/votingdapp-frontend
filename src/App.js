@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import react, { useEffect, useState } from 'react';
+import{ ethers } from "ethers";
 import './App.css';
 
-function App() {
+const App = () => {
+  const [currentAccount, setCurrentAccount] = useState("");
+
+  // See if user already has Metamask connected
+  const checkIfWalletConnected = async () => {
+    const { ethereum } = window;
+
+    if (!ethereum) {
+      alert("You need a MetaMask wallet to proceed");
+      return;
+    } else {
+      console.log("Ethereum Objected Found!", ethereum);
+    }
+  }
+
+  // Connect wallet function 
+  const connectWallet = async () => {
+    
+  }
+
+  const accounts = await ethereum.request({ method: 'eth_accounts' });
+  
+  if (accounts.length !== 0) {
+    const account = accounts[0];
+    console.log("Validated account:", account);
+    setCurrentAccount(account);
+  } else {
+    console.log("No account");
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1 center>Hello World!</h1>
     </div>
   );
 }
