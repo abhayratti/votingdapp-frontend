@@ -1,14 +1,15 @@
 import react, { useEffect, useState } from 'react';
 import{ ethers } from "ethers";
 import abi from "./utils/votecontract.json";
-import './App.css';
+import './styles/App.css';
+import './images/anonymous-sec-whistleblower.jpg';
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [allVotes, setAllVotes ]= useState(0);
   const [currentVotesForA, setVotesForA] = useState(0);
   const [currentVotesForB, setVotesForB] = useState(0);
-  const contractAddress = "0x442112D87D0f7666CaEcef16aA5B7dC44eA08276";
+  const contractAddress = "0x3aB1dAa6397798EB09e40F8976427a7dB7F9c006";
   const contractABI = abi.abi;
 
   const getAllVotes = async () => {
@@ -147,15 +148,18 @@ const App = () => {
       <div>
         {currentAccount === "" ? callConnectWallet() : false}
         <div>
+          <image></image>
+        </div>
+        <div>
         <button className='vote-button-a' onClick={voteForCandidateA}>
           Vote for Candidate A
         </button>
-        </div>
         <button className='vote-button-b' onClick={voteForCandidateB}>
           Vote for Candidate B
         </button>
+        </div>
         <div>
-          <h3>Total Votes: {allVotes} </h3>
+          <h3>Total Votes: {allVotes}</h3>
           <h3>Votes for A: {currentVotesForA}</h3>
           <h3>Votes for B: {currentVotesForB}</h3>
         </div>
