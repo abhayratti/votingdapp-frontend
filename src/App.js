@@ -5,8 +5,11 @@ import './App.css';
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
-  const contractAddress = "0xFd96d09dbabD1eae98A766426a38247DF8A2Be5D";
-  const contractABI = abi.abi
+  const [allVotes, setAllVotes ]= useState(0);
+  const [currentVotesForA, setVotesForA] = useState(0);
+  const [currentVotesForB, setVotesForB] = useState(0);
+  const contractAddress = "0x442112D87D0f7666CaEcef16aA5B7dC44eA08276";
+  const contractABI = abi.abi;
 
   const getAllVotes = async () => {
     try {
@@ -15,8 +18,9 @@ const App = () => {
         const signer = provider.getSigner();
         const voteContract = new ethers.Contract(contractAddress, contractABI, signer);
 
-        const votes = await voteContract.getTotalVotes();
-        return votes;
+        let votes = await voteContract.getTotalVotes();
+        setAllVotes(votes.toNumber());
+
       } else {
         console.log("Ethereum object doesn't exist");
       }
@@ -79,11 +83,13 @@ const App = () => {
         let count = await voteContract.getTotalVotes();
         console.log("Total vote count:", count.toNumber());
 
-        const voteTxn = await voteContract.voteForA({ gasLimit: 30000 });
-        console.log("Mining:", voteTxn.hash);
+        const aVoteForA = await voteContract.voteForA({ gasLimit: 30000 });
+        console.log("Mining:", aVoteForA.hash);
 
-        await voteTxn.wait();
-        console.log("Mined:", voteTxn.hash);
+        await aVoteForA.wait();
+        console.log("Mined:", aVoteForA.hash);
+
+        setVotesForA(aVoteForA.toNumber());
 
         count = await voteContract.getTotalVotes();
         console.log("Total vote count:", count.toNumber());
@@ -107,11 +113,13 @@ const App = () => {
         let count = await voteContract.getTotalVotes();
         console.log("Total vote count:", count.toNumber());
 
-        const voteTxn = await voteContract.voteForB({ gasLimit: 30000 });
-        console.log("Mining:", voteTxn.hash);
+        const aVoteForB = await voteContract.voteForB({ gasLimit: 30000 });
+        console.log("Mining:", aVoteForB.hash);
 
-        await voteTxn.wait();
-        console.log("Mined", voteTxn.hash);
+        await aVoteForB.wait();
+        console.log("Mined", aVoteForB.hash);
+
+        setVotesForB(aVoteForB.toNumber());
 
         count = await voteContract.getTotalVotes();
         console.log("Total vote count:", count.toNumber());
@@ -147,7 +155,9 @@ const App = () => {
           Vote for Candidate B
         </button>
         <div>
-          <h3>Total Votes: {getAllVotes} </h3>
+          <h3>Total Votes: {allVotes} </h3>
+          <h3>Votes for A: {currentVotesForA}</h3>
+          <h3>Votes for B: {currentVotesForB}</h3>
         </div>
       </div>
     </div>
