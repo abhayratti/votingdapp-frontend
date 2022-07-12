@@ -132,7 +132,7 @@ const App = () => {
   }
 
   const callConnectWallet = () => (
-    <button onClick={connectWallet}>
+    <button className='connect-wallet-button' onClick={connectWallet}>
       Connect to Wallet
     </button>
   );
@@ -147,11 +147,11 @@ const App = () => {
       <div>
         {currentAccount === "" ? callConnectWallet() : false}
         <div>
-        <button onClick={voteForCandidateA}>
+        <button className='vote-button-a' onClick={voteForCandidateA}>
           Vote for Candidate A
         </button>
         </div>
-        <button onClick={voteForCandidateB}>
+        <button className='vote-button-b' onClick={voteForCandidateB}>
           Vote for Candidate B
         </button>
         <div>
