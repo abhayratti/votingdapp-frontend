@@ -9,7 +9,7 @@ const App = () => {
   const [allVotes, setAllVotes ]= useState(0);
   const [currentVotesForA, setVotesForA] = useState(0);
   const [currentVotesForB, setVotesForB] = useState(0);
-  const contractAddress = "0x3aB1dAa6397798EB09e40F8976427a7dB7F9c006";
+  const contractAddress = "0xc2F1892794C0db035D799363D880B6044948d530";
   const contractABI = abi.abi;
 
   const getAllVotes = async () => {
@@ -144,24 +144,26 @@ const App = () => {
 
   return (
     <div className='App'>
-      <h1 className='App-header'>SecureVote</h1>
-      <div>
-        {currentAccount === "" ? callConnectWallet() : false}
-        <div>
-          <image></image>
-        </div>
-        <div>
-        <button className='vote-button-a' onClick={voteForCandidateA}>
+      <div className='container'>
+        <div className='header-container'>
+          <p className='header'>SecureVote</p>
+          <p className='sub-text'>A decentralized voting platform that leverages smart contracts for security</p>
+          <div>
+          {currentAccount === "" ? callConnectWallet() : false}
+          </div>
+          <div>
+          <button className='vote-button-a itema' onClick={voteForCandidateA}>
           Vote for Candidate A
-        </button>
-        <button className='vote-button-b' onClick={voteForCandidateB}>
-          Vote for Candidate B
-        </button>
-        </div>
-        <div>
-          <h3>Total Votes: {allVotes}</h3>
-          <h3>Votes for A: {currentVotesForA}</h3>
-          <h3>Votes for B: {currentVotesForB}</h3>
+          </button>
+          <button className='vote-button-b itemb' onClick={voteForCandidateB}>
+            Vote for Candidate B
+          </button>
+          <div className='sub-sub-text'>
+          <p>Votes for A: {currentVotesForA}</p>
+          <p>Votes for B: {currentVotesForB}</p>
+          <p>Total Votes: {allVotes}</p>
+          </div>
+          </div>
         </div>
       </div>
     </div>

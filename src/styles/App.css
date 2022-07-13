@@ -1,21 +1,6 @@
-.App {
-  text-align: center;
-  background-color: white;
-}
-
-.App-header {
-  min-height: 5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(60px);
-  color: black;
-}
-
 .connect-wallet-button {
   background: rgb(131,58,180);
-  background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+  /* background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%); */
   color: aliceblue;
   height: 45px;
   border: 0;
@@ -29,7 +14,7 @@
 }
 
 .vote-button-a {
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.66);
   color: white;
   height: 45px;
   border: 0;
@@ -40,10 +25,11 @@
   cursor: pointer;
   font-size: 16px;
   font-weight: bold;
+  margin-top: 35px;
 }
 
 .vote-button-b {
-  background-color: blue;
+  background-color: rgba(0, 0, 255, 0.672);
   color: white;
   height: 45px;
   border: 0;
@@ -53,5 +39,53 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: bold;
+  margin-left: 200px;
+  margin-top: 35px;
+}
+
+.App {
+  height: 100vh;
+  background-color: white;
+  overflow: scroll;
+  text-align: center;
+}
+
+.container {
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header-container {
+  padding-top: 30px;
+}
+
+.header {
+  margin: 0;
+  font-size: 100px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 2rem;
+  color: rgb(131,58,180);
+}
+
+.header-top {
+  font-size: medium;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 90%;
+}
+
+.sub-text {
+  font-size: 25px;
+  color: black;
+}
+
+.sub-sub-text {
+  font-size: 15px;
+  color: black;
   font-weight: bold;
 }
