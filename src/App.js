@@ -2,14 +2,15 @@ import react, { useEffect, useState } from 'react';
 import{ ethers } from "ethers";
 import abi from "./utils/votecontract.json";
 import './styles/App.css';
-import './images/anonymous-sec-whistleblower.jpg';
+import CandidateA from './images/anonymous-sec-whistleblower.jpg';
+import CandidateB from './images/profile-anonymous.jpg';
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
   const [allVotes, setAllVotes ]= useState(0);
   const [currentVotesForA, setVotesForA] = useState(0);
   const [currentVotesForB, setVotesForB] = useState(0);
-  const contractAddress = "0xc2F1892794C0db035D799363D880B6044948d530";
+  const contractAddress = "0x6E50DCeB0C67CbFEEbFdaB2018B3CD9D62FcdFEB";
   const contractABI = abi.abi;
 
   const getAllVotes = async () => {
@@ -151,6 +152,12 @@ const App = () => {
           <div>
           {currentAccount === "" ? callConnectWallet() : false}
           </div>
+          {/* <div class='inline-block'>
+            <img src={CandidateA} alt='Anonymous Candidate' className='square-image candidate-image'></img>
+            <p className='sub-sub-text'>Total Votes: {allVotes}</p>
+            <img src={CandidateB} alt='Anonymous Candidate' className='square-image candidate-image'></img>
+          </div> */}
+          <br></br>
           <div>
           <button className='vote-button-a itema' onClick={voteForCandidateA}>
           Vote for Candidate A
@@ -161,7 +168,6 @@ const App = () => {
           <div className='sub-sub-text'>
           <p>Votes for A: {currentVotesForA}</p>
           <p>Votes for B: {currentVotesForB}</p>
-          <p>Total Votes: {allVotes}</p>
           </div>
           </div>
         </div>
