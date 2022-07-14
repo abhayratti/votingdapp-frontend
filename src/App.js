@@ -10,7 +10,7 @@ const App = () => {
   const [allVotes, setAllVotes] = useState(0);
   const [currentVotesForA, setVotesForA] = useState(0);
   const [currentVotesForB, setVotesForB] = useState(0);
-  const contractAddress = "0x6E50DCeB0C67CbFEEbFdaB2018B3CD9D62FcdFEB";
+  const contractAddress = "0xE301aD9E154a23b988bDcD06EcA3Ae5e6C7459D7";
   const contractABI = abi.abi;
 
   const getAllVotes = async () => {
@@ -25,8 +25,14 @@ const App = () => {
         );
 
         let votes = await voteContract.getTotalVotes();
+        setAllVotes(votes.toNumber());
 
-        setAllVotes(votes.toString());
+        let aVotes = await voteContract.getVotesForA();
+        setVotesForA(aVotes.toNumber());
+
+        let bVotes = await voteContract.getVotesForB();
+        setVotesForB(bVotes.toNumber());
+
       } else {
         console.log("Ethereum object doesn't exist");
       }
@@ -181,9 +187,7 @@ const App = () => {
               Vote for Candidate B
             </button>
             <div className="sub-sub-text">
-              <p>Votes for A: {currentVotesForA}</p>
-              <p>Votes for B: {currentVotesForB}</p>
-              <p>Total votes: {allVotes}</p>
+              <p>Total votes: {allVotes} | Votes for A: {currentVotesForA} | Votes for B: {currentVotesForB}</p>
             </div>
           </div>
         </div>
