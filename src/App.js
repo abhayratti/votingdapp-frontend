@@ -7,9 +7,9 @@ import CandidateB from "./images/profile-anonymous.jpg";
 
 const App = () => {
   const [currentAccount, setCurrentAccount] = useState("");
-  const [allVotes, setAllVotes] = useState(0);
-  const [currentVotesForA, setVotesForA] = useState(0);
-  const [currentVotesForB, setVotesForB] = useState(0);
+  const [allVotes, setAllVotes] = useState("");
+  const [currentVotesForA, setVotesForA] = useState("");
+  const [currentVotesForB, setVotesForB] = useState("");
   const contractAddress = "0xE301aD9E154a23b988bDcD06EcA3Ae5e6C7459D7";
   const contractABI = abi.abi;
 
@@ -25,13 +25,13 @@ const App = () => {
         );
 
         let votes = await voteContract.getTotalVotes();
-        setAllVotes(votes.toNumber());
+        setAllVotes(votes.toString());
 
         let aVotes = await voteContract.getVotesForA();
-        setVotesForA(aVotes.toNumber());
+        setVotesForA(aVotes.toString());
 
         let bVotes = await voteContract.getVotesForB();
-        setVotesForB(bVotes.toNumber());
+        setVotesForB(bVotes.toString());
 
       } else {
         console.log("Ethereum object doesn't exist");
@@ -80,6 +80,7 @@ const App = () => {
 
       console.log("Connected", accounts[0]);
       setCurrentAccount(accounts[0]);
+      getAllVotes();
     } catch (error) {
       console.log(error);
     }
@@ -107,7 +108,7 @@ const App = () => {
         await aVoteForA.wait();
         console.log("Mined:", aVoteForA.hash);
 
-        setVotesForA(aVoteForA.toNumber());
+        getAllVotes();
 
         count = await voteContract.getTotalVotes();
         console.log("Total vote count:", count.toNumber());
@@ -141,7 +142,7 @@ const App = () => {
         await aVoteForB.wait();
         console.log("Mined", aVoteForB.hash);
 
-        setVotesForB(aVoteForB.toNumber());
+        getAllVotes();
 
         count = await voteContract.getTotalVotes();
         console.log("Total vote count:", count.toNumber());
