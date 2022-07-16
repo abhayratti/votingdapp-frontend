@@ -188,7 +188,7 @@ const App = () => {
               Vote for Candidate B
             </button>
             <div className="sub-sub-text">
-              <p>Total votes: {allVotes} | Votes for A: {currentVotesForA} | Votes for B: {currentVotesForB}</p>
+              <p>Total Votes: {allVotes} | Votes for A: {currentVotesForA} | Votes for B: {currentVotesForB}</p>
             </div>
           </div>
         </div>
